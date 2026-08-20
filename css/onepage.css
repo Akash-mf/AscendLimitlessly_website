@@ -1,0 +1,453 @@
+/* ==========================================================================
+   Ascend Limitlessly — One-Page Extension Stylesheet
+   Loaded after style.css. Adds: anchor-scroll offsets, scrollspy nav state,
+   login/signup modal (light brand-styled), service card hover effect,
+   footer newsletter block.
+   ========================================================================== */
+
+/* Anchor targets sit under the sticky header */
+#home, #about, #services, #contact {
+  scroll-margin-top: 96px;
+}
+
+/* Scrollspy: highlight the nav link for the section in view */
+.main-nav a.in-view {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Testimonial star rating */
+.testimonial-rating {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 14px;
+  color: #f5a623;
+}
+.testimonial-card:hover .testimonial-rating { color: #f5a623; }
+
+/* Header login trigger */
+.header-login-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color .15s ease, color .15s ease;
+}
+.header-login-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* ===================== Login / Sign Up Modal ===================== */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 17, 21, 0.55);
+  backdrop-filter: blur(3px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 200;
+}
+.auth-overlay.open { display: flex; }
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  padding: 30px 30px 32px;
+  box-shadow: 0 30px 70px rgba(15, 17, 21, 0.25);
+  position: relative;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.auth-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+.auth-close:hover { color: var(--color-text); }
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--color-surface-alt);
+  border-radius: 999px;
+  padding: 5px;
+  margin: 6px 0 24px;
+}
+.auth-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: .92rem;
+  padding: 11px 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color .25s ease, color .25s ease;
+}
+.auth-tab.active {
+  color: #fff;
+  background: var(--color-primary);
+}
+
+.auth-heading { text-align: center; margin-bottom: 22px; }
+.auth-heading h3 { font-size: 1.35rem; margin-bottom: 6px; }
+.auth-heading p { font-size: .9rem; margin: 0; }
+
+.auth-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.auth-field { margin-bottom: 16px; }
+.auth-field label {
+  display: block;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.auth-input-wrap { position: relative; display: flex; align-items: center; }
+.auth-input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--color-primary);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+.auth-field input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 13px 14px 13px 40px;
+  color: var(--color-text);
+  font-size: .92rem;
+  font-family: inherit;
+}
+.auth-field input::placeholder { color: #a7adb6; }
+.auth-field input:focus { outline: none; border-color: var(--color-primary); }
+.auth-input-wrap:has(.auth-eye-toggle) input { padding-right: 42px; }
+
+.auth-eye-toggle {
+  position: absolute;
+  right: 12px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+}
+.auth-eye-toggle:hover { color: var(--color-text); }
+.auth-eye-toggle.is-visible { color: var(--color-primary); }
+
+.auth-forgot {
+  display: flex;
+  justify-content: flex-end;
+  margin: -6px 0 16px;
+}
+.auth-forgot a { color: var(--color-primary); font-size: .82rem; font-weight: 600; }
+.auth-forgot a:hover { text-decoration: underline; }
+
+.auth-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: .85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.auth-agree input { position: absolute; opacity: 0; width: 0; height: 0; }
+.auth-agree-box {
+  width: 19px; height: 19px; flex-shrink: 0; margin-top: 1px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+.auth-agree input:checked + .auth-agree-box {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.auth-agree input:checked + .auth-agree-box::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 5px; height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.auth-agree a { color: var(--color-primary); font-weight: 600; }
+.auth-agree a:hover { text-decoration: underline; }
+
+.btn-auth-primary {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 0;
+  font-weight: 700;
+  font-size: .95rem;
+  color: #fff;
+  background: var(--color-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  transition: background-color .15s ease;
+}
+.btn-auth-primary:hover { background: var(--color-primary-dark); }
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 16px;
+  color: var(--color-text-muted);
+  font-size: .78rem;
+}
+.auth-divider::before, .auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.auth-social { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+.btn-auth-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: 12px;
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: .88rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.btn-auth-social:hover { border-color: var(--color-text-muted); background: var(--color-surface-alt); }
+
+.auth-switch {
+  text-align: center;
+  font-size: .85rem;
+  color: var(--color-text-muted);
+}
+.auth-switch a { color: var(--color-primary); font-weight: 700; }
+.auth-switch a:hover { text-decoration: underline; }
+
+.auth-panel { display: none; }
+.auth-panel.active { display: block; }
+
+@media (max-width: 480px) {
+  .auth-field-row { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ===================== Service Card Hover Effect ===================== */
+/* Card keeps its existing white bg / gray border / green accents at rest
+   (those rules already live in style.css). On hover, the whole card fills
+   solid with the brand green, text flips to white, and the card lifts
+   with a soft shadow. */
+.service-card {
+  transition: transform .35s ease, box-shadow .35s ease,
+              background-color .35s ease, border-color .35s ease;
+}
+.service-card h3,
+.service-card p,
+.service-card .service-price,
+.service-card .checklist li {
+  transition: color .3s ease;
+}
+.service-card .service-icon {
+  transition: background-color .3s ease, color .3s ease;
+}
+.service-card .service-icon svg {
+  transition: color .3s ease;
+}
+.service-card .checklist li::before {
+  transition: color .3s ease;
+}
+
+.service-card:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 34px rgba(22, 166, 115, 0.28);
+}
+.service-card:hover h3,
+.service-card:hover p,
+.service-card:hover .service-price,
+.service-card:hover .checklist li {
+  color: #fff;
+}
+.service-card:hover .checklist li::before {
+  color: #fff;
+}
+.service-card:hover .service-icon {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+.service-card:hover .service-icon svg {
+  color: #fff !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card h3, .service-card p, .service-card .service-price,
+  .service-card .checklist li, .service-card .checklist li::before,
+  .service-card .service-icon, .service-card .service-icon svg {
+    transition: none;
+  }
+  .service-card:hover {
+    transform: none;
+  }
+}
+
+/* ===================== Footer Newsletter ===================== */
+.footer-newsletter {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 44px 24px 8px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  margin-bottom: 40px;
+}
+.footer-newsletter-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-bottom: 40px;
+}
+.footer-newsletter-copy h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+.footer-newsletter-copy p {
+  color: rgba(255,255,255,.55);
+  margin: 0;
+  font-size: .92rem;
+}
+.footer-newsletter-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-newsletter-form input[type="email"] {
+  min-width: 260px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: #fff;
+  font-size: .92rem;
+  font-family: inherit;
+}
+.footer-newsletter-form input[type="email"]::placeholder { color: rgba(255,255,255,.35); }
+.footer-newsletter-form input[type="email"]:focus { outline: none; border-color: var(--color-primary); }
+.footer-newsletter-form button {
+  border: none;
+  border-radius: 10px;
+  padding: 13px 26px;
+  font-weight: 700;
+  font-size: .92rem;
+  color: #fff;
+  background: var(--color-primary);
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.footer-newsletter-form button:hover { background: var(--color-primary-dark); }
+.footer-newsletter-msg {
+  font-size: .82rem;
+  color: #7fe0b3;
+  margin-top: 10px;
+  display: none;
+}
+.footer-newsletter-msg.show { display: block; }
+
+@media (max-width: 720px) {
+  .footer-newsletter-inner { flex-direction: column; align-items: flex-start; }
+  .footer-newsletter-form { width: 100%; }
+  .footer-newsletter-form input[type="email"] { flex: 1; min-width: 0; }
+}
+
+@media (max-width: 480px) {
+  .footer-newsletter-form { flex-direction: column; }
+  .footer-newsletter-form input[type="email"],
+  .footer-newsletter-form button { width: 100%; }
+}
+
+/* ===================== Mobile header: keep brand + login + call + menu
+   button from overflowing on small phones ===================== */
+@media (max-width: 720px) {
+  .site-header { padding: 12px 12px; }
+  .header-inner { padding: 10px 14px; gap: 10px; }
+  .brand-mark-img { height: 32px; }
+  .brand-name .line-1, .brand-name .line-2 { font-size: .82rem; }
+  .header-login-btn { padding: 8px 14px; font-size: .78rem; gap: 6px; }
+  .header-phone-icon { width: 36px; height: 36px; }
+  .header-actions { gap: 8px; }
+}
+
+@media (max-width: 720px) {
+  .main-nav { top: 76px; }
+}
+
+@media (max-width: 420px) {
+  .header-login-btn {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    justify-content: center;
+  }
+  .header-login-btn .login-label { display: none; }
+}
+
+/* Login/Sign up modal: tighter padding on small screens */
+@media (max-width: 480px) {
+  .auth-overlay { padding: 20px 14px; }
+  .auth-card { padding: 26px 20px 24px; border-radius: 16px; }
+  .auth-close { top: -12px; right: -8px; }
+}
